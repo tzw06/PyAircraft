@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6863F7D91E72559A001ED67C /* aerodynamics.py in Resources */ = {isa = PBXBuildFile; fileRef = 6863F7D21E72559A001ED67C /* aerodynamics.py */; };
+		6863F7DA1E72559A001ED67C /* aircraft.py in Resources */ = {isa = PBXBuildFile; fileRef = 6863F7D31E72559A001ED67C /* aircraft.py */; };
+		6863F7DB1E72559A001ED67C /* engine.py in Resources */ = {isa = PBXBuildFile; fileRef = 6863F7D41E72559A001ED67C /* engine.py */; };
+		6863F7DC1E72559A001ED67C /* geometry.py in Resources */ = {isa = PBXBuildFile; fileRef = 6863F7D51E72559A001ED67C /* geometry.py */; };
+		6863F7DD1E72559A001ED67C /* main.py in Resources */ = {isa = PBXBuildFile; fileRef = 6863F7D61E72559A001ED67C /* main.py */; };
+		6863F7DE1E72559A001ED67C /* performance.py in Resources */ = {isa = PBXBuildFile; fileRef = 6863F7D71E72559A001ED67C /* performance.py */; };
+		6863F7DF1E72559A001ED67C /* weight.py in Resources */ = {isa = PBXBuildFile; fileRef = 6863F7D81E72559A001ED67C /* weight.py */; };
 		687138C91E34BE9500271DF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687138C81E34BE9500271DF4 /* AppDelegate.swift */; };
 		687138CB1E34BE9500271DF4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687138CA1E34BE9500271DF4 /* ViewController.swift */; };
 		687138CD1E34BE9500271DF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 687138CC1E34BE9500271DF4 /* Assets.xcassets */; };
@@ -14,6 +21,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6863F7D21E72559A001ED67C /* aerodynamics.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = aerodynamics.py; path = ../core/aerodynamics.py; sourceTree = "<group>"; };
+		6863F7D31E72559A001ED67C /* aircraft.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = aircraft.py; path = ../core/aircraft.py; sourceTree = "<group>"; };
+		6863F7D41E72559A001ED67C /* engine.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = engine.py; path = ../core/engine.py; sourceTree = "<group>"; };
+		6863F7D51E72559A001ED67C /* geometry.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = geometry.py; path = ../core/geometry.py; sourceTree = "<group>"; };
+		6863F7D61E72559A001ED67C /* main.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = main.py; path = ../core/main.py; sourceTree = "<group>"; };
+		6863F7D71E72559A001ED67C /* performance.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = performance.py; path = ../core/performance.py; sourceTree = "<group>"; };
+		6863F7D81E72559A001ED67C /* weight.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = weight.py; path = ../core/weight.py; sourceTree = "<group>"; };
 		687138C51E34BE9500271DF4 /* PyAircraft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PyAircraft.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		687138C81E34BE9500271DF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		687138CA1E34BE9500271DF4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,9 +47,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6863F7E01E7255A3001ED67C /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+				6863F7D21E72559A001ED67C /* aerodynamics.py */,
+				6863F7D31E72559A001ED67C /* aircraft.py */,
+				6863F7D41E72559A001ED67C /* engine.py */,
+				6863F7D51E72559A001ED67C /* geometry.py */,
+				6863F7D61E72559A001ED67C /* main.py */,
+				6863F7D71E72559A001ED67C /* performance.py */,
+				6863F7D81E72559A001ED67C /* weight.py */,
+			);
+			name = scripts;
+			sourceTree = "<group>";
+		};
 		687138BC1E34BE9500271DF4 = {
 			isa = PBXGroup;
 			children = (
+				6863F7E01E7255A3001ED67C /* scripts */,
 				687138C71E34BE9500271DF4 /* PyAircraft */,
 				687138C61E34BE9500271DF4 /* Products */,
 			);
@@ -121,8 +150,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6863F7DD1E72559A001ED67C /* main.py in Resources */,
+				6863F7D91E72559A001ED67C /* aerodynamics.py in Resources */,
+				6863F7DF1E72559A001ED67C /* weight.py in Resources */,
 				687138CD1E34BE9500271DF4 /* Assets.xcassets in Resources */,
+				6863F7DC1E72559A001ED67C /* geometry.py in Resources */,
+				6863F7DA1E72559A001ED67C /* aircraft.py in Resources */,
+				6863F7DB1E72559A001ED67C /* engine.py in Resources */,
 				687138D01E34BE9500271DF4 /* Main.storyboard in Resources */,
+				6863F7DE1E72559A001ED67C /* performance.py in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +325,7 @@
 				687138D61E34BE9500271DF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

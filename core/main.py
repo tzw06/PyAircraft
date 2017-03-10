@@ -9,7 +9,7 @@ from geometry import Fuselage
 print sys.argv
 
 aircraft = Aircraft()
-aircraft.open('B787-8.xml')
+aircraft.open('aircraft20170309.xml')
 aircraft.estimate()
 
 for param in sys.argv:

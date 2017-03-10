@@ -75,8 +75,8 @@ class Fuselage:
         self.__width  = string.atof(fuseElement.getElementsByTagName('width')[0].firstChild.data)
         self.__height = string.atof(fuseElement.getElementsByTagName('height')[0].firstChild.data)
         
-        length_f = string.atof(fuseElement.getElementsByTagName('front-length')[0].firstChild.data)
-        length_r = string.atof(fuseElement.getElementsByTagName('rear-length')[0].firstChild.data)
+        length_f = string.atof(fuseElement.getElementsByTagName('length-front')[0].firstChild.data)
+        length_r = string.atof(fuseElement.getElementsByTagName('length-rear')[0].firstChild.data)
         self.setLengthSection(length_f, length_r)
         
         self.__fuelTankVolume = string.atof(fuseElement.getElementsByTagName('fuel-tank-volume')[0].firstChild.data)
@@ -312,7 +312,7 @@ class Wing:
         
         self.__sweptTEin = string.atof(wingElement.getElementsByTagName('swept-angle-te-in')[0].firstChild.data)
         
-        self.__dihedral = string.atof(wingElement.getElementsByTagName('dihedral')[0].firstChild.data)
+        self.__dihedral = string.atof(wingElement.getElementsByTagName('dihedral-angle')[0].firstChild.data)
         
         self.__fuelTankVolume = string.atof(wingElement.getElementsByTagName('fuel-tank-volume')[0].firstChild.data)
         
@@ -321,7 +321,7 @@ class Wing:
         
         self.calcDimension()
     
-        airfoilElement = wingElement.getElementsByTagName('airfoil')[0]
+        airfoilElement = wingElement.getElementsByTagName('default-airfoil')[0]
         airfoilName = airfoilElement.firstChild.data
         filename = "profile/airfoil/" + airfoilName
     
@@ -544,7 +544,7 @@ class Stabilizer:
         self.__sweptAngle = string.atof(stabElement.getElementsByTagName('swept-angle')[0].firstChild.data)
         self.__taperRatio = string.atof(stabElement.getElementsByTagName('taper-ratio')[0].firstChild.data)
 
-        self.__dihedral = string.atof(stabElement.getElementsByTagName('dihedral')[0].firstChild.data)
+        self.__dihedral = string.atof(stabElement.getElementsByTagName('dihedral-angle')[0].firstChild.data)
 
         self.__mountPercentOfX = string.atof(stabElement.getElementsByTagName('mount-percent-of-x')[0].firstChild.data)
         self.__mountPercentOfY = string.atof(stabElement.getElementsByTagName('mount-percent-of-y')[0].firstChild.data)
