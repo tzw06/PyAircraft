@@ -7,19 +7,61 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		682211D71EB58A3E0028DCA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682211D61EB58A3E0028DCA5 /* AppDelegate.swift */; };
-		682211D91EB58A3E0028DCA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682211D81EB58A3E0028DCA5 /* ViewController.swift */; };
-		682211DB1EB58A3E0028DCA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 682211DA1EB58A3E0028DCA5 /* Assets.xcassets */; };
-		682211DE1EB58A3E0028DCA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 682211DC1EB58A3E0028DCA5 /* Main.storyboard */; };
+		686ECB691EB669CF00D7C26E /* QtXml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 686ECB681EB669CF00D7C26E /* QtXml.framework */; };
+		686ECB6B1EB9DAF900D7C26E /* mainframe.qrc in Resources */ = {isa = PBXBuildFile; fileRef = 686ECB6A1EB9DAF900D7C26E /* mainframe.qrc */; };
+		686ECB6C1EB9DB4B00D7C26E /* mainframe.qrc in Sources */ = {isa = PBXBuildFile; fileRef = 686ECB6A1EB9DAF900D7C26E /* mainframe.qrc */; };
+		68C642161EB58B95001E7FF0 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68C642151EB58B95001E7FF0 /* main.cpp */; };
+		68C642181EB58C6F001E7FF0 /* core in Resources */ = {isa = PBXBuildFile; fileRef = 68C642171EB58C6F001E7FF0 /* core */; };
+		68C6421B1EB58CFA001E7FF0 /* mainwindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68C642191EB58CFA001E7FF0 /* mainwindow.cpp */; };
+		68C642201EB58F8C001E7FF0 /* QtCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C6421D1EB58F8B001E7FF0 /* QtCore.framework */; };
+		68C642211EB58F8C001E7FF0 /* QtGui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C6421E1EB58F8B001E7FF0 /* QtGui.framework */; };
+		68C642221EB58F8C001E7FF0 /* QtWidgets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68C6421F1EB58F8C001E7FF0 /* QtWidgets.framework */; };
+		68C642251EB59217001E7FF0 /* mainwindow.h in Sources */ = {isa = PBXBuildFile; fileRef = 68C6421A1EB58CFA001E7FF0 /* mainwindow.h */; };
+		68C642281EB59A0A001E7FF0 /* inspector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68C642261EB59A0A001E7FF0 /* inspector.cpp */; };
+		68C642291EB59E50001E7FF0 /* inspector.h in Sources */ = {isa = PBXBuildFile; fileRef = 68C642271EB59A0A001E7FF0 /* inspector.h */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		68C642231EB591B4001E7FF0 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.h";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			name = MOC;
+			outputFiles = (
+				"$(DERIVED_FILE_DIR)/moc_${INPUT_FILE_BASE}.cpp",
+			);
+			script = "/opt/Qt/Current/clang_64/bin/moc -o ${DERIVED_FILE_DIR}/moc_${INPUT_FILE_BASE}.cpp ${INPUT_FILE_PATH}";
+		};
+		68C642241EB591D7001E7FF0 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.qrc";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			name = RCC;
+			outputFiles = (
+				"$(DERIVED_FILE_DIR)/qrc_${INPUT_FILE_BASE}.cpp",
+			);
+			script = "/opt/Qt/Current/clang_64/bin/rcc -o ${DERIVED_FILE_DIR}/qrc_${INPUT_FILE_BASE}.cpp ${INPUT_FILE_PATH}";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
 		682211D31EB58A3E0028DCA5 /* PyAircraft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PyAircraft.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		682211D61EB58A3E0028DCA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		682211D81EB58A3E0028DCA5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		682211DA1EB58A3E0028DCA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		682211DD1EB58A3E0028DCA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		682211DF1EB58A3E0028DCA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		686ECB681EB669CF00D7C26E /* QtXml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtXml.framework; path = ../../../../../opt/Qt/5.8/clang_64/lib/QtXml.framework; sourceTree = "<group>"; };
+		686ECB6A1EB9DAF900D7C26E /* mainframe.qrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mainframe.qrc; sourceTree = "<group>"; };
+		68C642151EB58B95001E7FF0 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		68C642171EB58C6F001E7FF0 /* core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = core; path = ../core; sourceTree = "<group>"; };
+		68C642191EB58CFA001E7FF0 /* mainwindow.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mainwindow.cpp; sourceTree = "<group>"; };
+		68C6421A1EB58CFA001E7FF0 /* mainwindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mainwindow.h; sourceTree = "<group>"; };
+		68C6421D1EB58F8B001E7FF0 /* QtCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtCore.framework; path = ../../../../../opt/Qt/5.8/clang_64/lib/QtCore.framework; sourceTree = "<group>"; };
+		68C6421E1EB58F8B001E7FF0 /* QtGui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtGui.framework; path = ../../../../../opt/Qt/5.8/clang_64/lib/QtGui.framework; sourceTree = "<group>"; };
+		68C6421F1EB58F8C001E7FF0 /* QtWidgets.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtWidgets.framework; path = ../../../../../opt/Qt/5.8/clang_64/lib/QtWidgets.framework; sourceTree = "<group>"; };
+		68C642261EB59A0A001E7FF0 /* inspector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = inspector.cpp; sourceTree = "<group>"; };
+		68C642271EB59A0A001E7FF0 /* inspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inspector.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +69,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				686ECB691EB669CF00D7C26E /* QtXml.framework in Frameworks */,
+				68C642201EB58F8C001E7FF0 /* QtCore.framework in Frameworks */,
+				68C642211EB58F8C001E7FF0 /* QtGui.framework in Frameworks */,
+				68C642221EB58F8C001E7FF0 /* QtWidgets.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -36,8 +82,10 @@
 		682211CA1EB58A3E0028DCA5 = {
 			isa = PBXGroup;
 			children = (
-				682211D51EB58A3E0028DCA5 /* PyAircraft */,
+				68C642171EB58C6F001E7FF0 /* core */,
+				682211D51EB58A3E0028DCA5 /* Sources */,
 				682211D41EB58A3E0028DCA5 /* Products */,
+				68C6421C1EB58F8B001E7FF0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -49,16 +97,30 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		682211D51EB58A3E0028DCA5 /* PyAircraft */ = {
+		682211D51EB58A3E0028DCA5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				682211D61EB58A3E0028DCA5 /* AppDelegate.swift */,
-				682211D81EB58A3E0028DCA5 /* ViewController.swift */,
-				682211DA1EB58A3E0028DCA5 /* Assets.xcassets */,
-				682211DC1EB58A3E0028DCA5 /* Main.storyboard */,
+				686ECB6A1EB9DAF900D7C26E /* mainframe.qrc */,
 				682211DF1EB58A3E0028DCA5 /* Info.plist */,
+				68C642151EB58B95001E7FF0 /* main.cpp */,
+				68C642191EB58CFA001E7FF0 /* mainwindow.cpp */,
+				68C6421A1EB58CFA001E7FF0 /* mainwindow.h */,
+				68C642261EB59A0A001E7FF0 /* inspector.cpp */,
+				68C642271EB59A0A001E7FF0 /* inspector.h */,
 			);
+			name = Sources;
 			path = PyAircraft;
+			sourceTree = "<group>";
+		};
+		68C6421C1EB58F8B001E7FF0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				686ECB681EB669CF00D7C26E /* QtXml.framework */,
+				68C6421D1EB58F8B001E7FF0 /* QtCore.framework */,
+				68C6421E1EB58F8B001E7FF0 /* QtGui.framework */,
+				68C6421F1EB58F8C001E7FF0 /* QtWidgets.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -73,6 +135,8 @@
 				682211D11EB58A3E0028DCA5 /* Resources */,
 			);
 			buildRules = (
+				68C642241EB591D7001E7FF0 /* PBXBuildRule */,
+				68C642231EB591B4001E7FF0 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -121,8 +185,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				682211DB1EB58A3E0028DCA5 /* Assets.xcassets in Resources */,
-				682211DE1EB58A3E0028DCA5 /* Main.storyboard in Resources */,
+				68C642181EB58C6F001E7FF0 /* core in Resources */,
+				686ECB6B1EB9DAF900D7C26E /* mainframe.qrc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,23 +197,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				682211D91EB58A3E0028DCA5 /* ViewController.swift in Sources */,
-				682211D71EB58A3E0028DCA5 /* AppDelegate.swift in Sources */,
+				686ECB6C1EB9DB4B00D7C26E /* mainframe.qrc in Sources */,
+				68C642291EB59E50001E7FF0 /* inspector.h in Sources */,
+				68C642281EB59A0A001E7FF0 /* inspector.cpp in Sources */,
+				68C642251EB59217001E7FF0 /* mainwindow.h in Sources */,
+				68C6421B1EB58CFA001E7FF0 /* mainwindow.cpp in Sources */,
+				68C642161EB58B95001E7FF0 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		682211DC1EB58A3E0028DCA5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				682211DD1EB58A3E0028DCA5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		682211E01EB58A3E0028DCA5 /* Debug */ = {
@@ -247,28 +304,38 @@
 		682211E31EB58A3E0028DCA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8TA8A4UHA7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/Qt/5.8/clang_64/lib,
+				);
 				INFOPLIST_FILE = PyAircraft/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks /opt/Qt/Current/clang_64/lib";
 				PRODUCT_BUNDLE_IDENTIFIER = tzw.PyAircraft;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "/opt/Qt/Current/clang_64/lib/QtCore.framework/Headers /opt/Qt/Current/clang_64/lib/QtWidgets.framework/Headers /opt/Qt/Current/clang_64/lib/QtGui.framework/Headers /opt/Qt/Current/clang_64/lib/QtXml.framework/Headers";
 			};
 			name = Debug;
 		};
 		682211E41EB58A3E0028DCA5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8TA8A4UHA7;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/Qt/5.8/clang_64/lib,
+				);
 				INFOPLIST_FILE = PyAircraft/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks /opt/Qt/Current/clang_64/lib";
 				PRODUCT_BUNDLE_IDENTIFIER = tzw.PyAircraft;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "/opt/Qt/Current/clang_64/lib/QtCore.framework/Headers /opt/Qt/Current/clang_64/lib/QtWidgets.framework/Headers /opt/Qt/Current/clang_64/lib/QtGui.framework/Headers /opt/Qt/Current/clang_64/lib/QtXml.framework/Headers";
 			};
 			name = Release;
 		};
@@ -291,6 +358,7 @@
 				682211E41EB58A3E0028DCA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
