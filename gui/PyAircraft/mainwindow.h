@@ -38,6 +38,8 @@ private:
     void readSettings();
     void writeSettings();
     
+    void saveToFile(QString filename);
+    
     QAction *openAct, *saveAct;
     QAction *inspectorAct, *runAct;
     

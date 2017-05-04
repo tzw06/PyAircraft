@@ -10,6 +10,9 @@ import sys,os
 
 class Fuselage:
     
+    def __init__(self, respath):
+        self.__respath = respath
+    
     __name = "fuselage"
     
     # MARK: variables to be specified
@@ -67,6 +70,9 @@ class Fuselage:
     # MARK: input & output
     
     def open(self, filename):
+        
+        print "loading fuselage data from file: %s" % filename
+        
         dom = xml.dom.minidom.parse(filename)
         root =  dom.documentElement
         fuseElement = root.getElementsByTagName('fuselage')[0]
@@ -83,7 +89,7 @@ class Fuselage:
 
         sectionElement = fuseElement.getElementsByTagName('section')[0]
         sectionName = sectionElement.firstChild.data
-        filename = "profile/fuselage/" + sectionName
+        filename = self.__respath + "/profile/fuselage/" + sectionName
 
         self.__profile_x  = []
         self.__profile_yu = []
@@ -149,6 +155,9 @@ class Fuselage:
 
 class Wing:
 
+    def __init__(self, respath):
+        self.__respath = respath
+    
     __name = "wing"
     
     # MARK: variables to be specified
@@ -300,6 +309,8 @@ class Wing:
     # MARK: input & output
     
     def open(self, filename):
+        print "loading wing data from file: %s" % filename
+
         dom = xml.dom.minidom.parse(filename)
         root =  dom.documentElement
         wingElement = root.getElementsByTagName('wing')[0]
@@ -323,7 +334,7 @@ class Wing:
     
         airfoilElement = wingElement.getElementsByTagName('default-airfoil')[0]
         airfoilName = airfoilElement.firstChild.data
-        filename = "profile/airfoil/" + airfoilName
+        filename = self.__respath + "/profile/airfoil/" + airfoilName
     
         with open(filename,'r') as f:
             for line in f:
@@ -415,6 +426,9 @@ class Wing:
 
 class Stabilizer:
 
+    def __init__(self, respath):
+        self.__respath = respath
+            
     __name = "stabilizer"
     
     # MARK: variables to be specified
@@ -615,6 +629,9 @@ class Stabilizer:
 
 class Fin:
 
+    def __init__(self, respath):
+        self.__respath = respath
+            
     __name = "fin"
     
     # MARK: variables to be specified
@@ -790,6 +807,9 @@ class Fin:
 
 class Nacelle:
 
+    def __init__(self, respath):
+        self.__respath = respath
+    
     __name = "nacelle"
     
     # MARK: variables to be specified
@@ -891,7 +911,7 @@ class Nacelle:
         
         sectionElement = nacElement.getElementsByTagName('section')[0]
         sectionName = sectionElement.firstChild.data
-        filename = "profile/nacelle/" + sectionName
+        filename = self.__respath + "/profile/nacelle/" + sectionName
         
         self.__profile_x  = []
         self.__profile_yu = []

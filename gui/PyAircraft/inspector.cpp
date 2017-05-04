@@ -34,6 +34,11 @@ void Inspector::setContent(QDomElement &parent)
     appendChild(parent, QModelIndex());
 }
 
+void Inspector::saveContent(QDomDocument &document, QDomElement &parent)
+{
+    writeChild(document, parent, QModelIndex());
+}
+
 void Inspector::appendChild(QDomElement &parent, QModelIndex parentIndex)
 {
     if (parentIndex.isValid())
@@ -69,5 +74,34 @@ void Inspector::appendChild(QDomElement &parent, QModelIndex parentIndex)
             appendChild(element, index0);
         
         element = element.nextSiblingElement();
+    }
+}
+
+void Inspector::writeChild(QDomDocument &document, QDomElement &parent, QModelIndex parentIndex)
+{
+    int nrow = model->rowCount(parentIndex);
+    for(int irow=0;irow<nrow;irow++)
+    {
+        QModelIndex index0 = model->index(irow,0,parentIndex);
+        QModelIndex index1 = index0.sibling(irow, 1);
+        
+        QString tagName = model->data(index0).toString();
+        QString text    = model->data(index1).toString();
+        
+        QDomElement element = document.createElement(tagName);
+        element.appendChild(document.createTextNode(text));
+        
+        QStringList attrs = model->data(index0, Qt::ToolTipRole).toString().split("\n");
+        for(int i=0;i<attrs.size();i++)
+        {
+            QStringList strs = attrs.at(i).split("=");
+            if (strs.size()>1)
+                element.setAttribute(strs.first(), strs.last());
+        }
+        
+        if (model->hasChildren(index0))
+            writeChild(document, element, index0);
+        
+        parent.appendChild(element);
     }
 }

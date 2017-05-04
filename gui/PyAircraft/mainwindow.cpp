@@ -8,6 +8,7 @@
 
 #include "mainwindow.h"
 #include "inspector.h"
+#include "runview.h"
 #include <QtXml>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -65,16 +66,37 @@ void MainWindow::open()
 
 void MainWindow::save()
 {
+    QString filename = QFileDialog::getSaveFileName(this, tr("Save as..."), QDir::currentPath(), "XML files (*.xml)");
+    if (filename.isNull())
+        return;
+
+    QString suffix = ".xml";
+    if (!filename.endsWith(suffix))
+        filename = filename + suffix;
     
+    saveToFile(filename);
+    
+    QDir::setCurrent(QFileInfo(filename).absolutePath());
 }
 
 void MainWindow::run()
 {
-    QString program = "/Users/tzw/SDK/PyAircraft/core/main.py";
-    QStringList arguments;
-    arguments << "outline" << "report";
+    RunOption option;
+    option.Program = "/Users/tzw/SDK/PyAircraft/core/main.py";
+    option.Path = "/Users/tzw";
     
-    proc->start(program, arguments);
+    RunView dlg(&option, this);
+    if (dlg.exec()!=QDialog::Accepted)
+        return;
+    
+    QString filename = option.Path + "/input.xml";
+
+    saveToFile(filename);
+    
+    QStringList arguments;
+    arguments << "-i" << filename << "outline" << "report";
+    
+    proc->start(option.Program, arguments);
 }
 
 void MainWindow::onShowInspector(bool is)
@@ -91,6 +113,7 @@ void MainWindow::onReadOutput()
 void MainWindow::createView()
 {
     edit = new QTextEdit(this);
+    edit->setFontFamily("Consolas");
     
     inspector = new Inspector(this);
     
@@ -178,4 +201,26 @@ void MainWindow::writeSettings()
     
     settings.setValue("current-path", QDir::currentPath());
     
+}
+
+void MainWindow::saveToFile(QString filename)
+{
+    QFile file(QString::fromLocal8Bit(filename.toLocal8Bit()));
+    if (!file.open(QFile::WriteOnly | QFile::Text)) {
+        QMessageBox::warning(this, tr("Save to file"),
+                             QString(tr("Cannot save to %1:\n%2")).arg(filename).arg(file.errorString()));
+        return;
+    }
+    
+    QTextStream out(&file);
+    
+    QDomDocument doc;
+    QDomElement element = doc.createElement("aircraft");
+    doc.appendChild(element);
+    
+    inspector->saveContent(doc, element);
+    
+    doc.save(out,4);
+    
+    file.close();
 }

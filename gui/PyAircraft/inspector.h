@@ -21,9 +21,11 @@ public:
     ~Inspector();
     
     void setContent(QDomElement &parent);
+    void saveContent(QDomDocument &document, QDomElement &parent);
     
 private:
     void appendChild(QDomElement &parent, QModelIndex parentIndex);
+    void writeChild(QDomDocument &document, QDomElement &parent, QModelIndex parentIndex);
 
     QStandardItemModel *model;
 };

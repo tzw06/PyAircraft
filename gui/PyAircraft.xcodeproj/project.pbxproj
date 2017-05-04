@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		683002791EBAC1EE00413998 /* runview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 683002771EBAC1EE00413998 /* runview.cpp */; };
+		6830027A1EBAC37000413998 /* runview.h in Sources */ = {isa = PBXBuildFile; fileRef = 683002781EBAC1EE00413998 /* runview.h */; };
 		686ECB691EB669CF00D7C26E /* QtXml.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 686ECB681EB669CF00D7C26E /* QtXml.framework */; };
 		686ECB6B1EB9DAF900D7C26E /* mainframe.qrc in Resources */ = {isa = PBXBuildFile; fileRef = 686ECB6A1EB9DAF900D7C26E /* mainframe.qrc */; };
 		686ECB6C1EB9DB4B00D7C26E /* mainframe.qrc in Sources */ = {isa = PBXBuildFile; fileRef = 686ECB6A1EB9DAF900D7C26E /* mainframe.qrc */; };
@@ -51,6 +53,8 @@
 /* Begin PBXFileReference section */
 		682211D31EB58A3E0028DCA5 /* PyAircraft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PyAircraft.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		682211DF1EB58A3E0028DCA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		683002771EBAC1EE00413998 /* runview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = runview.cpp; sourceTree = "<group>"; };
+		683002781EBAC1EE00413998 /* runview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runview.h; sourceTree = "<group>"; };
 		686ECB681EB669CF00D7C26E /* QtXml.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtXml.framework; path = ../../../../../opt/Qt/5.8/clang_64/lib/QtXml.framework; sourceTree = "<group>"; };
 		686ECB6A1EB9DAF900D7C26E /* mainframe.qrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mainframe.qrc; sourceTree = "<group>"; };
 		68C642151EB58B95001E7FF0 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 				68C6421A1EB58CFA001E7FF0 /* mainwindow.h */,
 				68C642261EB59A0A001E7FF0 /* inspector.cpp */,
 				68C642271EB59A0A001E7FF0 /* inspector.h */,
+				683002771EBAC1EE00413998 /* runview.cpp */,
+				683002781EBAC1EE00413998 /* runview.h */,
 			);
 			name = Sources;
 			path = PyAircraft;
@@ -198,11 +204,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				686ECB6C1EB9DB4B00D7C26E /* mainframe.qrc in Sources */,
+				6830027A1EBAC37000413998 /* runview.h in Sources */,
 				68C642291EB59E50001E7FF0 /* inspector.h in Sources */,
 				68C642281EB59A0A001E7FF0 /* inspector.cpp in Sources */,
 				68C642251EB59217001E7FF0 /* mainwindow.h in Sources */,
 				68C6421B1EB58CFA001E7FF0 /* mainwindow.cpp in Sources */,
 				68C642161EB58B95001E7FF0 /* main.cpp in Sources */,
+				683002791EBAC1EE00413998 /* runview.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

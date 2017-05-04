@@ -14,22 +14,25 @@ from performance  import Mission
 
 class Aircraft:
     
-    __name = "Default Aircraft"
-    
-    __fuse = Fuselage()
-    __wing = Wing()
-    __stab = Stabilizer()
-    __fin  = Fin()
-    __nac  = Nacelle()
-    
-    __mass = Mass()
-    __aero = Aerodynamics(__fuse, __wing, __stab, __fin, __nac)
-    __mission    = Mission()
-    __missionOff = Mission()
+    def __init__(self, respath):
+
+        __name = "Default Aircraft"
+
+        self.__respath = respath
+        self.__fuse = Fuselage(respath)
+        self.__wing = Wing(respath)
+        self.__stab = Stabilizer(respath)
+        self.__fin  = Fin(respath)
+        self.__nac  = Nacelle(respath)
+        
+        self.__mass = Mass()
+        self.__aero = Aerodynamics(self.__fuse, self.__wing, self.__stab, self.__fin, self.__nac)
+        self.__mission    = Mission()
+        self.__missionOff = Mission()
     
     # MARK: input & output
     
-    os.chdir("/Users/tzw/SDK/PyAircraft/workspace")
+#    os.chdir("/Users/tzw/SDK/PyAircraft/workspace")
 
     def open(self, filename):
         print "load data from file: %s" % filename
