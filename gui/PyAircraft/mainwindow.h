@@ -11,6 +11,7 @@
 
 #include <QtWidgets>
 
+class RunOption;
 class Inspector;
 
 class MainWindow : public QMainWindow
@@ -39,6 +40,8 @@ private:
     void readSettings();
     void writeSettings();
     
+    void loadFromFile(QString filename);
+    void updateFromFile(QString filename);
     void saveToFile(QString filename);
     
     QAction *openAct, *saveAct;
@@ -48,6 +51,7 @@ private:
     Inspector *inspector;
     
     QProcess *proc;
+    RunOption *option;
 };
 
 

@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     
     readSettings();
     
+    option = new RunOption;
     proc = new QProcess(this);
     connect(proc, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadOutput()));
     connect(proc, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(onRunFinished(int,QProcess::ExitStatus)));
@@ -29,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    delete proc;
+    delete option;
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
@@ -47,20 +48,7 @@ void MainWindow::open()
     if (!filename.endsWith(suffix))
         filename = filename + suffix;
     
-    QFile file(QString::fromLocal8Bit(filename.toLocal8Bit()));
-    if (!file.open(QFile::ReadOnly | QFile::Text)) {
-        QMessageBox::warning(this, tr("Loading from file"),
-                             QString(tr("Cannot read file %1:\n%2")).arg(filename).arg(file.errorString()));
-        return;
-    }
-    
-    QDomDocument doc;
-    QDomElement rootElement;
-    
-    doc.setContent(&file);
-    rootElement = doc.documentElement();
-    
-    inspector->setContent(rootElement);
+    loadFromFile(filename);
     
     QDir::setCurrent(QFileInfo(filename).absolutePath());
 }
@@ -82,23 +70,22 @@ void MainWindow::save()
 
 void MainWindow::run()
 {
-    RunOption option;
-    option.Program = "/Users/tzw/SDK/PyAircraft/core/main.py";
-    option.Path = "/Users/tzw";
+    option->Program = "/Users/tzw/SDK/PyAircraft/core/main.py";
+    option->Path = "/Users/tzw";
     
-    RunView dlg(&option, this);
+    RunView dlg(option, this);
     if (dlg.exec()!=QDialog::Accepted)
         return;
     
-    QString inputFileName = option.Path + "/input.xml";
-    QString outputFileName = option.Path + "/output.xml";
+    QString inputFileName = option->Path + "/input.xml";
+    QString outputFileName = option->Path + "/output.xml";
 
     saveToFile(inputFileName);
     
     QStringList arguments;
     arguments << "-i" << inputFileName << "-o" << outputFileName << "outline" << "report";
     
-    proc->start(option.Program, arguments);
+    proc->start(option->Program, arguments);
 }
 
 void MainWindow::onShowInspector(bool is)
@@ -114,7 +101,13 @@ void MainWindow::onReadOutput()
 
 void MainWindow::onRunFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
-    QMessageBox::information(this, "info", "finished");
+    if (exitStatus==QProcess::NormalExit) {
+        updateFromFile(option->Path + "/output.xml");
+    }
+    else {
+        QString msg = QString("Program crashed with code = %1").arg(exitCode);
+        QMessageBox::information(this, "Error", msg);
+    }
 }
 
 void MainWindow::createView()
@@ -208,6 +201,46 @@ void MainWindow::writeSettings()
     
     settings.setValue("current-path", QDir::currentPath());
     
+}
+
+void MainWindow::loadFromFile(QString filename)
+{
+    QFile file(QString::fromLocal8Bit(filename.toLocal8Bit()));
+    if (!file.open(QFile::ReadOnly | QFile::Text)) {
+        QMessageBox::warning(this, tr("Loading from file"),
+                             QString(tr("Cannot read file %1:\n%2")).arg(filename).arg(file.errorString()));
+        return;
+    }
+    
+    QDomDocument doc;
+    QDomElement rootElement;
+    
+    doc.setContent(&file);
+    rootElement = doc.documentElement();
+    
+    inspector->setContent(rootElement);
+    
+    file.close();
+}
+
+void MainWindow::updateFromFile(QString filename)
+{
+    QFile file(QString::fromLocal8Bit(filename.toLocal8Bit()));
+    if (!file.open(QFile::ReadOnly | QFile::Text)) {
+        QMessageBox::warning(this, tr("Update from file"),
+                             QString(tr("Cannot read file %1:\n%2")).arg(filename).arg(file.errorString()));
+        return;
+    }
+    
+    QDomDocument doc;
+    QDomElement rootElement;
+    
+    doc.setContent(&file);
+    rootElement = doc.documentElement();
+    
+    inspector->updateContent(rootElement);
+    
+    file.close();
 }
 
 void MainWindow::saveToFile(QString filename)

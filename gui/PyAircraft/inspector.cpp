@@ -34,6 +34,11 @@ void Inspector::setContent(QDomElement &parent)
     appendChild(parent, QModelIndex());
 }
 
+void Inspector::updateContent(QDomElement &parent)
+{
+    updateChild(parent, QModelIndex());
+}
+
 void Inspector::saveContent(QDomDocument &document, QDomElement &parent)
 {
     writeChild(document, parent, QModelIndex());
@@ -74,6 +79,28 @@ void Inspector::appendChild(QDomElement &parent, QModelIndex parentIndex)
             appendChild(element, index0);
         
         element = element.nextSiblingElement();
+    }
+}
+
+void Inspector::updateChild(QDomElement &parent, QModelIndex parentIndex)
+{
+    int nrow = model->rowCount(parentIndex);
+    for(int irow=0;irow<nrow;irow++)
+    {
+        QModelIndex index0 = model->index(irow,0,parentIndex);
+        QModelIndex index1 = index0.sibling(irow, 1);
+        
+        QString tagName = model->data(index0).toString();
+        
+        QDomElement element = parent.firstChildElement(tagName);
+        if (!element.isNull())
+        {
+            if ( element.hasChildNodes() && element.firstChild().isText())
+                model->setData(index1, element.text());
+            
+            if (element.hasChildNodes())
+                updateChild(element, index0);
+        }
     }
 }
 
