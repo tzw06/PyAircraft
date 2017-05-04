@@ -2,6 +2,8 @@ import os
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+from xml.etree.ElementTree import ElementTree,Element
+
 from geometry import Fuselage
 from geometry import Wing
 from geometry import Stabilizer
@@ -61,9 +63,24 @@ class Aircraft:
         
         self.__nac.open(filename)
     
-    def save(self, filename):
+    def save(self, template, filename):
+
         print "save data to file: %s" % filename
-        print "to be added"
+    
+        tree = ElementTree()
+        tree.parse(template)
+    
+        res_fuse = self.__fuse.results()
+        res_wing = self.__wing.results()
+        res = dict(res_fuse, **res_wing)
+        
+        for key in res:
+            text = "%s" % res[key]
+            nodelist = tree.findall(key)
+            for node in nodelist:
+                node.text = text
+    
+        tree.write(filename, encoding="utf-8",xml_declaration=True)
     
     # MARK: calculation
     

@@ -104,6 +104,14 @@ class Fuselage:
                 self.__profile_yb.append(data[1]-data[4])
                 self.__profile_z.append(data[2]+data[5])
 
+    def results(self):
+    
+        values = {}
+        values['fuselage/length'] = self.__length
+        values['fuselage/width']  = self.__width
+        values['fuselage/height'] = self.__height
+    
+        return values
     
     # MARK: print information
     
@@ -343,7 +351,14 @@ class Wing:
                 self.__airfoil_yu.append(data[1])
                 self.__airfoil_yb.append(data[2])
     
-
+    def results(self):
+    
+        values = {}
+        values['wing/ref-area'] = self.__refArea
+        values['wing/aspect-ratio']  = self.__aspectRatio
+        
+        return values
+    
     # MARK: print information
 
     def printInformation(self):

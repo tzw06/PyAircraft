@@ -7,15 +7,27 @@ from aircraft import Aircraft
 
 print os.getcwd()
 
-if '-i' in sys.argv:
-    i = sys.argv.index('-i')
+inputfile = ""
+outputfile = ""
+respath = sys.path[0] + "/../workspace"
 
-#    filename = os.getcwd() + '/' + sys.argv[i+1]
-    filename = sys.argv[i+1]
-    respath = sys.path[0] + "/../workspace"
+try:
+    i = sys.argv.index('-i')
+    inputfile = sys.argv[i+1]
+except:
+    print "failed to assign input file"
+
+try:
+    i = sys.argv.index('-o')
+    outputfile = sys.argv[i+1]
+except:
+    print "failed to assign output file"
+
+
+if inputfile!="" and outputfile!="":
     
     aircraft = Aircraft(respath)
-    aircraft.open(filename)
+    aircraft.open(inputfile)
 #        aircraft.open('aircraft20170309.xml')
     aircraft.estimate()
 
@@ -28,6 +40,8 @@ if '-i' in sys.argv:
 
         elif param=="fuel tank volume":
             aircraft.calcFuelTankVolume()
+
+    aircraft.save(inputfile, outputfile)
     
 
 

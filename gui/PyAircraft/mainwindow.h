@@ -29,6 +29,7 @@ private slots:
     void run();
     void onShowInspector(bool is);
     void onReadOutput();
+    void onRunFinished(int,QProcess::ExitStatus);
     
 private:
     void createView();

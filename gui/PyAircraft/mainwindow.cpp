@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
     
     proc = new QProcess(this);
     connect(proc, SIGNAL(readyReadStandardOutput()), this, SLOT(onReadOutput()));
+    connect(proc, SIGNAL(finished(int,QProcess::ExitStatus)), this, SLOT(onRunFinished(int,QProcess::ExitStatus)));
 }
 
 MainWindow::~MainWindow()
@@ -89,12 +90,13 @@ void MainWindow::run()
     if (dlg.exec()!=QDialog::Accepted)
         return;
     
-    QString filename = option.Path + "/input.xml";
+    QString inputFileName = option.Path + "/input.xml";
+    QString outputFileName = option.Path + "/output.xml";
 
-    saveToFile(filename);
+    saveToFile(inputFileName);
     
     QStringList arguments;
-    arguments << "-i" << filename << "outline" << "report";
+    arguments << "-i" << inputFileName << "-o" << outputFileName << "outline" << "report";
     
     proc->start(option.Program, arguments);
 }
@@ -108,6 +110,11 @@ void MainWindow::onReadOutput()
 {
     QByteArray ba = proc->readAllStandardOutput();
     edit->append(ba);
+}
+
+void MainWindow::onRunFinished(int exitCode, QProcess::ExitStatus exitStatus)
+{
+    QMessageBox::information(this, "info", "finished");
 }
 
 void MainWindow::createView()
